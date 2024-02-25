@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tasbeh</title>
+    <style type="text/css">
+
+        h1 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tasbeh {
+            position: relative;
+            width: 135px;
+            height: 180px;
+            background-color: #2fd4c7;
+            border-radius: 29px;
+        }
+
+        .ekran {
+            box-sizing: border-box;
+            width: 72%;
+            height: 20%;
+            margin: 19px;
+            font-size: 30px;
+            font-family: revert;
+            font-weight: bold;
+        }
+
+        .bigbutton {
+            position: absolute;
+            left: 35px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        .buttoncha {
+            position: absolute;
+            left: 100px;
+            bottom: 90px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #ff0505;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Elektron tasbeh😎</h1>
+
+    <div class="tasbeh">
+        <input type="text" class="ekran" value="0">
+        <input type="button" class="bigbutton" onclick="pluss()" />
+        <input type="button" class="buttoncha" onclick="numDel()">
+    </div>
+    <!-- TimeOut -->
+    <div class="time">
+        <div class="timerInterval">
+            <div class="counter" id="counter" style="border: 1px solid rgb(0, 0, 0);
+                                                    padding: 20px;
+                                                    margin: 20px;
+                                                    width: 100px;
+                                                    text-align: center;
+                                                    font-size: 40px;
+                                                    color: rgb(255, 183, 1);">0</div> 
+            <div>
+                <input type="number" placeholder="Vaqt kiriting" class="timeEnd" style="width: 100%; margin: 20px auto; padding: 20px; width: 50%;" />
+            </div>
+    
+            <div class="buttons">
+                <button class="start">START</button>
+                <button class="stop">STOP</button>
+                <button class="clear">CLEAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        var ekran = document.querySelector('.ekran');
+        var bigButton = document.querySelector('.bigbutton');
+        var littleButton = document.querySelector('.buttoncha');
+        
+        const pluss = () => {
+            ekran.value = Number(ekran.value) + 1;
+        };
+        const numDel = () => ekran.value = 0;
+        
+        // bigButton.addEventListener('click', function(){
+        //     ekran.value = parseInt(ekran.value) + 1;
+        // });
+        
+        // littleButton.addEventListener('click', function(){
+        //     ekran.value = 0;
+        // });
+
+        // TimeOut
+        const counterElement = document.querySelector('.counter');
+        const start = document.querySelector('.start');
+        const stopp = document.querySelector('.stop');
+        const clear = document.querySelector('.clear');
+        let counter = 0;
+
+        let startTimer;
+        
+        start.addEventListener('click', () => {
+            startTimer = setInterval(() => {
+                counter++;
+                counterElement.innerText = counter;
+
+                var timeEnd = document.querySelector('.timeEnd');
+                
+                if (counter == Number(timeEnd.value)){
+                ekran.value = 0;
+                clearInterval(startTimer);
+            }
+            }, 1000);
+        });
+
+        stopp.onclick = () => {
+            clearInterval(startTimer);
+        };
+            
+        clear.onclick = () => {
+            clearInterval(startTimer);
+            counter = 0;
+            counterElement.innerText = counter;
+            
+        };
+
+        
+
+        
+        
+
+
+    </script>
+</body>
+</html>
